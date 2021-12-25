@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Curve Fever</title>
+	<style>
+		html, body, canvas{
+			width: 100%;
+			height: 100%;
+		}
+
+		#playpause {
+			position: absolute;
+			right: 100px;
+			top: 10px;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<button class="btn btn-primary" id="playpause" onclick="game.toggle();">Play/pause</button>
+<canvas id="board"></canvas>
+</body>
+<script>
+	$(document).ready(function() {
+		function loadScript (dir, file) {
+			var scr = document.createElement("script");
+			scr.src = dir + `${file}.js`;
+			scr.id = `${file}-script`
+			document.body.appendChild(scr);
+		}
+		let files = [ "Canvas", "GameObject", "Line", "Game", "main"];
+		files.forEach(f => loadScript("js/", f))
+	});
+</script>
+</html>
