@@ -8,11 +8,11 @@ class ScoreBoard {
 
 	playerLoses(p) {
 		if(!this.loseOrder.includes(p)) {
-			p.score += this.loseOrder.length*10;
+			p.score += this.loseOrder.length;
 			this.loseOrder.push(p);
 			if(this.loseOrder.length === this.players.length -1) {
 				let lastPlayer = this.players.filter(player => !this.loseOrder.includes(player))[0];
-				lastPlayer.score += this.loseOrder.length*10;
+				lastPlayer.score += this.loseOrder.length;
 				this.game.changeState(this.game.gameOverState);
 			}
 		}
