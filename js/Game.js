@@ -6,10 +6,13 @@ class Game {
 		this.canvas = new Canvas(id);
 		this.running = false;
 		this.objects = [];
-		for (let i = 0; i < 3; i++) {
-			this.objects.push(new Line(`Player ${i}`, (i+1)*200, 400, 10*this.SPEED, this.canvas, i))
+		for (let i = 0; i < 2; i++) {
+			this.objects.push(new Line(`Player ${i}`, (i+1)*200, (i+1)*100, 10*this.SPEED, this, i, i))
 		}
-		// this.objects = [new Line("Player 1", 100, 100, 10*this.SPEED, this.canvas)]
+		this.scoreBoard = new ScoreBoard(this, this.objects);
+		this.gameState = new GameState(this);
+		this.gameOverState = new GameOverState(this);
+		this.currentState = this.gameState;
 	}
 
 	toggle() {
@@ -19,6 +22,13 @@ class Game {
 			this.start();
 		}
 	}
+
+	changeState(state) {
+		this.currentState.stop();
+		this.currentState = state;
+		this.currentState.start();
+	}
+
 	resume() {
 		this.running = true;
 		this.lastRender = performance.now();
@@ -28,6 +38,7 @@ class Game {
 	start() {
 		this.running = true;
 		this.lastRender = performance.now();
+		this.currentState.start();
 		window.requestAnimationFrame((t) => {this.loop(t)});
 	}
 
@@ -36,15 +47,11 @@ class Game {
 	}
 
 	update(progress) {
-		this.objects.forEach((o) => {
-			o.update(progress);
-		});
+		this.currentState.update(progress);
 	}
 
 	draw() {
-		this.objects.forEach((o) => {
-			o.draw();
-		});
+		this.currentState.draw();
 	}
 
 	loop(timestamp) {

@@ -3,10 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Curve Fever</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<style>
-		html, body, canvas{
+		html, body{
 			width: 100%;
 			height: 100%;
+			margin: 0;
+			background-color: black;
+			color: white;
+		}
+
+		body {
+			display: flex;
+			align-items: stretch;
+		}
+
+		#top-container {
+			display: flex;
+			width: 100%;
+			padding: 60px 20px;
+		}
+
+		canvas {
+			border: 1px solid white;
 		}
 
 		#playpause {
@@ -14,22 +33,71 @@
 			right: 100px;
 			top: 10px;
 		}
+
+		#score-board {
+			width: 400px;
+		}
+
+		button {
+			padding: 3px 5px!important;
+		}
+
+		.score {
+			display: flex;
+			padding-right: 20px;
+			align-items: center;
+		}
+
+		.score div {
+			margin: 10px;
+		}
+
+		.score-color {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background-color: yellow;
+			margin-left: 0!important;
+		}
+
+		.score-data {
+			display: flex;
+			justify-content: space-between;
+			flex-grow: 1;
+		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
 <button class="btn btn-primary" id="playpause" onclick="game.toggle();">Play/pause</button>
-<canvas id="board"></canvas>
+<div id="top-container">
+	<div id="score-board">
+		<h1>Scores:</h1>
+		<div id="scores">
+			<div class="score">
+				<div class="score-color"></div>
+				<div class="score-data">
+					<span>Player 1:</span>
+					<span>0</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<canvas id="board"></canvas>
+</div>
 </body>
 <script>
 	$(document).ready(function() {
 		function loadScript (dir, file) {
 			var scr = document.createElement("script");
 			scr.src = dir + `${file}.js`;
-			scr.id = `${file}-script`
+			scr.id = `${file}-script`;
 			document.body.appendChild(scr);
 		}
-		let files = [ "Canvas", "GameObject", "Line", "Game", "main"];
+		let statefiles = [ "State", "GameState", "GameOverState"];
+		statefiles.forEach(f => loadScript("js/states/", f));
+		let files = [ "Canvas", "KeyInput", "GameObject", "Line", "ScoreBoard", "Game", "main"];
 		files.forEach(f => loadScript("js/", f))
 	});
 </script>
