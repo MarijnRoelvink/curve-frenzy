@@ -44,7 +44,6 @@
 
 		.score {
 			display: flex;
-			padding-right: 20px;
 			align-items: center;
 		}
 
@@ -65,6 +64,36 @@
 			justify-content: space-between;
 			flex-grow: 1;
 		}
+
+		.player-number-container {
+			margin-top: 20px;
+			display: flex;
+		}
+
+		.number-control {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.number-control img {
+			width: 14px;
+			margin: 3px 10px;
+			cursor: pointer;
+		}
+
+		.player-input {
+			display: flex;
+			margin: 0;
+		}
+
+		.player-input div {
+			width: 20px;
+			border-radius: 2px;
+			text-align: center;
+			font-weight: 600;
+			color: black;
+			text-transform: uppercase;
+		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -81,6 +110,14 @@
 					<span>Player 1:</span>
 					<span>0</span>
 				</div>
+			</div>
+		</div>
+		<div class="player-number-container">
+			<div class="mr-1">Number of players: </div>
+			<div id="player-number"> 2</div>
+			<div class="number-control">
+				<img src="img/up.svg" onclick="game.addPlayer()">
+				<img src="img/down.svg" onclick="game.removePlayer()">
 			</div>
 		</div>
 	</div>

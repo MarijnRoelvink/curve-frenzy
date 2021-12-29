@@ -1,11 +1,11 @@
 class GameObject {
 
-	constructor(id, x, y, speed, game) {
+	constructor(id, {x, y, dx, dy}, game) {
 		this.id = id;
 		this.startPos = new Position(x, y);
 		this.pos = new Position(x, y);
-		this.startMov = new Movement(speed, 0);
-		this.mov = new Movement(speed, 0);
+		this.startMov = new Movement(dx, dy);
+		this.mov = new Movement(dx, dy);
 		this.canvas = game.canvas;
 		this.objects = game.objects;
 		this.game = game;

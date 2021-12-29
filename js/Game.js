@@ -1,18 +1,38 @@
 class Game {
 
-	SPEED = 0.01;
+	SPEED = 0.1;
 
 	constructor(id) {
 		this.canvas = new Canvas(id);
 		this.running = false;
+		let perc = 0.2;
+		this.positions = [
+			{x: perc*this.canvas.getWidth(), y: perc*this.canvas.getHeight(), dx: this.SPEED, dy: 0},
+			{x: (1-perc)*this.canvas.getWidth(), y: perc*this.canvas.getHeight(), dx: 0, dy: this.SPEED},
+			{x: perc*this.canvas.getWidth(), y: (1-perc)*this.canvas.getHeight(), dx: 0, dy: -this.SPEED},
+			{x: (1-perc)*this.canvas.getWidth(), y: (1-perc)*this.canvas.getHeight(), dx: -this.SPEED, dy: 0},
+
+		];
 		this.objects = [];
 		for (let i = 0; i < 2; i++) {
-			this.objects.push(new Line(`Player ${i}`, (i+1)*200, (i+1)*100, 10*this.SPEED, this, i, i))
+			this.objects.push(new Line(`Player ${i+1}`, this.positions[i], this, i, i))
 		}
 		this.scoreBoard = new ScoreBoard(this, this.objects);
 		this.gameState = new GameState(this);
 		this.gameOverState = new GameOverState(this);
 		this.currentState = this.gameState;
+	}
+
+	addPlayer() {
+		this.objects.push(new Line(`Player ${this.objects.length+1}`,this.positions[this.objects.length], this, this.objects.length, this.objects.length));
+		$("#player-number").html(this.objects.length);
+		this.changeState(this.gameState);
+	}
+
+	removePlayer() {
+		this.objects.pop();
+		$("#player-number").html(this.objects.length);
+		this.changeState(this.gameState);
 	}
 
 	toggle() {

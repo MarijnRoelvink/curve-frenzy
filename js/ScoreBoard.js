@@ -31,6 +31,10 @@ class ScoreBoard {
 				<span>${p.id}:</span>
 				<span>${p.score}</span>
 			</div>
+			<div class="player-input">
+				<div style="background-color: ${p.color}">${p.arrows.leftIcon? p.arrows.leftIcon : p.arrows.left}</div>
+				<div style="background-color: ${p.color}">${p.arrows.rightIcon? p.arrows.rightIcon : p.arrows.right}</div>
+			</div>
 		</div>`).join("\n");
 		$("#scores").html(string);
 	}
