@@ -125,18 +125,14 @@
 	<canvas id="board"></canvas>
 </div>
 </body>
-<script>
-	$(document).ready(function() {
-		function loadScript (dir, file) {
-			var scr = document.createElement("script");
-			scr.src = dir + `${file}.js`;
-			scr.id = `${file}-script`;
-			document.body.appendChild(scr);
-		}
-		let statefiles = [ "State", "GameState", "GameOverState"];
-		statefiles.forEach(f => loadScript("js/states/", f));
-		let files = [ "Canvas", "KeyInput", "GameObject", "Line", "ScoreBoard", "Game", "main"];
-		files.forEach(f => loadScript("js/", f))
-	});
-</script>
+<script src="js/states/State.js"></script>
+<script src="js/states/GameState.js"></script>
+<script src="js/states/GameOverState.js"></script>
+<script src="js/Canvas.js"></script>
+<script src="js/KeyInput.js"></script>
+<script src="js/GameObject.js"></script>
+<script src="js/Line.js"></script>
+<script src="js/ScoreBoard.js"></script>
+<script src="js/Game.js"></script>
+<script src="js/main.js"></script>
 </html>
