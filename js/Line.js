@@ -32,8 +32,8 @@ class Line extends GameObject {
 		this.canvas.drawCircle(this.pos.x, this.pos.y, this.color, this.width);
 	}
 
-	keyDown(keys) {
-		let angleSpeed = 0.05;
+	keyDown(progress, keys) {
+		let angleSpeed = 0.002*progress;
 		if(keys[this.arrows.left]) {
 			this.mov.turnLeft(angleSpeed);
 		}

@@ -19,7 +19,7 @@ class GameState extends State{
 	}
 
 	update(progress) {
-		this.keyInput.updateObjects();
+		this.keyInput.updateObjects(progress);
 		this.game.scoreBoard.getWinners().forEach(o => {
 			o.update(progress);
 			if(o.checkCollide()) {

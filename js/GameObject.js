@@ -11,7 +11,7 @@ class GameObject {
 		this.game = game;
 	}
 
-	keyDown(e) {}
+	keyDown(progress, e) {}
 
 	reset() {
 		this.pos.x = this.startPos.x;

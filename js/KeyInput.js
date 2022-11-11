@@ -29,7 +29,7 @@ class KeyInput {
 		});
 	}
 
-	updateObjects() {
-		this.objects.forEach(o => o.keyDown(this.keysPressed));
+	updateObjects(progress) {
+		this.objects.forEach(o => o.keyDown(progress, this.keysPressed));
 	}
 }

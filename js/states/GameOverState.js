@@ -24,7 +24,7 @@ class GameOverState extends State{
 
 	}
 
-	keyDown(keys) {
+	keyDown(progress, keys) {
 		if(keys["Enter"]) {
 			this.game.changeState(this.game.gameState);
 		}
